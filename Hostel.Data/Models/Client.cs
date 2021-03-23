@@ -18,6 +18,7 @@ namespace Hostel.Data.Models
         public DateTime? DatofBirth { get; set; }
         public string Adress { get; set; }
         public string Telephone { get; set; }
+        public string Email { get; set; }
 
         public virtual ICollection<Handling> Handling { get; set; }
     }

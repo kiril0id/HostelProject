@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hostel.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Hostel.BusinessLogic.Services;
+
 
 namespace Hostel.Web
 {
@@ -23,7 +27,12 @@ namespace Hostel.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            // добавляем контекст MobileContext в качестве сервиса в приложение
+            services.AddDbContext<bdHostelContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
+           services.AddTransient<IRoom, BookingRoom>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
