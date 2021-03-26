@@ -57,6 +57,11 @@ namespace Hostel.Web
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //    name: "room",
+                //    pattern: "RoomList",
+                //    defaults: new { controller = "Room", action = "ListFreeRoom" });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

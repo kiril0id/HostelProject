@@ -39,7 +39,7 @@ namespace Hostel.BusinessLogic.Services
 
         public Room GetRomm(int id)
         {
-            throw new NotImplementedException();
+            return _context.Room.Find(id);
         }
     }
 }

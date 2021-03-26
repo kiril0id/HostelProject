@@ -29,7 +29,7 @@ namespace Hostel.Web.Controllers
         {
             var left = Convert.ToDateTime(leftDate);
             var right = Convert.ToDateTime(rightDate);
-            return View("Privacy", _room.GetAllFreeRooms(left, right));
+            return View(@"~\Views\Room\ListFreeRoom.cshtml", _room.GetAllFreeRooms(left, right));
         }
 
         public IActionResult Privacy()
