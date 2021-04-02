@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Hostel.Data.Models
+namespace Hostel.BusinessLogic.Models
 {
-    public partial class Client
+   public class ClientFullInformation
     {
-        public Client()
-        {
-            Handling = new HashSet<Handling>();
-        }
-
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -19,7 +15,8 @@ namespace Hostel.Data.Models
         public string Adress { get; set; }
         public string Telephone { get; set; }
 
-        public virtual ClientWeb ClientWeb { get; set; }
-        public virtual ICollection<Handling> Handling { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public int idRole { get; set; }
     }
 }

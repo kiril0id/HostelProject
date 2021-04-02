@@ -22,15 +22,16 @@ namespace Hostel.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+
             return View();
         }
-        [HttpPost]
-        public IActionResult Index(string leftDate, string rightDate)
-        {
-            var left = Convert.ToDateTime(leftDate);
-            var right = Convert.ToDateTime(rightDate);
-            return View(@"~\Views\Room\ListFreeRoom.cshtml", _room.GetAllFreeRooms(left, right));
-        }
+        //[HttpPost]
+        //public IActionResult Index(string leftDate, string rightDate)
+        //{
+        //    var left = Convert.ToDateTime(leftDate);
+        //    var right = Convert.ToDateTime(rightDate);
+        //    return View(@"~\Views\Room\ListFreeRoom.cshtml", _room.GetAllFreeRooms(left, right));
+        //}
 
         public IActionResult Privacy()
         {

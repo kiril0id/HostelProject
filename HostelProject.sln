@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hostel.Common", "Hostel.Com
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hostel.Data", "Hostel.Data\Hostel.Data.csproj", "{F2D4614B-811A-463F-93F7-F03B37037475}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "upgrate data", "upgrate data\upgrate data.csproj", "{3D865594-210D-4ED4-9F3A-FF8FF23A17D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F2D4614B-811A-463F-93F7-F03B37037475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2D4614B-811A-463F-93F7-F03B37037475}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2D4614B-811A-463F-93F7-F03B37037475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D865594-210D-4ED4-9F3A-FF8FF23A17D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D865594-210D-4ED4-9F3A-FF8FF23A17D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D865594-210D-4ED4-9F3A-FF8FF23A17D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D865594-210D-4ED4-9F3A-FF8FF23A17D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

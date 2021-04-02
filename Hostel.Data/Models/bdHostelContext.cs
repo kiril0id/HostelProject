@@ -17,9 +17,11 @@ namespace Hostel.Data.Models
 
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<ClientWeb> ClientWeb { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Handling> Handling { get; set; }
         public virtual DbSet<Position> Position { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<RoomProp> RoomProp { get; set; }
         public virtual DbSet<Service> Service { get; set; }
@@ -52,10 +54,6 @@ namespace Hostel.Data.Models
 
                 entity.Property(e => e.DatofBirth).HasColumnType("date");
 
-                entity.Property(e => e.Email)
-                    .HasMaxLength(30)
-                    .IsFixedLength();
-
                 entity.Property(e => e.FirstName).HasMaxLength(50);
 
                 entity.Property(e => e.LastName).HasMaxLength(50);
@@ -69,6 +67,32 @@ namespace Hostel.Data.Models
                 entity.Property(e => e.Telephone)
                     .HasMaxLength(20)
                     .IsFixedLength();
+            });
+
+            modelBuilder.Entity<ClientWeb>(entity =>
+            {
+                entity.HasKey(e => e.IdClient)
+                    .HasName("PK__ClientWe__A6A610D4A057DCD9");
+
+                entity.Property(e => e.IdClient)
+                    .HasColumnName("idClient")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Email).HasMaxLength(30);
+
+                entity.Property(e => e.IdRole).HasColumnName("idRole");
+
+                entity.Property(e => e.Password).HasMaxLength(20);
+
+                entity.HasOne(d => d.IdClientNavigation)
+                    .WithOne(p => p.ClientWeb)
+                    .HasForeignKey<ClientWeb>(d => d.IdClient)
+                    .HasConstraintName("FK__ClientWeb__idCli__3E1D39E1");
+
+                entity.HasOne(d => d.IdRoleNavigation)
+                    .WithMany(p => p.ClientWeb)
+                    .HasForeignKey(d => d.IdRole)
+                    .HasConstraintName("FK__ClientWeb__idRol__3F115E1A");
             });
 
             modelBuilder.Entity<Employee>(entity =>
@@ -170,6 +194,13 @@ namespace Hostel.Data.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.Salary).HasColumnType("money");
+            });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Name).HasMaxLength(10);
             });
 
             modelBuilder.Entity<Room>(entity =>

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Hostel.BusinessLogic.Services;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Hostel.Web
 {
@@ -31,8 +31,16 @@ namespace Hostel.Web
             string connection = Configuration.GetConnectionString("DefaultConnection");
             // добавляем контекст MobileContext в качестве сервиса в приложение
             services.AddDbContext<bdHostelContext>(options => options.UseSqlServer(connection));
-            services.AddControllersWithViews();
+            services.AddAutoMapper(typeof(ProfileManager));
            services.AddTransient<IRoom, BookingRoom>();
+            services.AddTransient<IAccount, SettingsAccount>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options => //CookieAuthenticationOptions
+        {
+            options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+        });
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,9 +59,13 @@ namespace Hostel.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting();         
 
-            app.UseAuthorization();
+          
+
+            app.UseAuthentication();    // аутентификация
+            app.UseAuthorization();     // авторизация
+
 
             app.UseEndpoints(endpoints =>
             {
