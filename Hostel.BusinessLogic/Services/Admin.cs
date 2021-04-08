@@ -266,5 +266,14 @@ namespace Hostel.BusinessLogic.Services
         {
            return  _context.Handling.ToList();            
         }
+
+        public IEnumerable<Handling> GetNowHandling(DateTime left, DateTime right)
+        {
+            return (from tab2 in _context.Handling
+                       where ((tab2.InCheck > left) && (tab2.OutCheck < right)) || ((tab2.InCheck < left) && (tab2.OutCheck > left)) || ((tab2.InCheck < right) && (tab2.OutCheck > right))
+                      
+                       select tab2).ToList();
+            //_context.Handling.Where(p => p.InCheck < left && p.OutCheck > right).ToList();
+        }
     }
 }

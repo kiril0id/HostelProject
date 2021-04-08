@@ -13,6 +13,7 @@ namespace Hostel.BusinessLogic.Services
         bool CreateNewHandling(Handling handling);
         bool DeleteHandling(int id);
         bool EditHandling(Handling handling);
+        IEnumerable<Handling> GetNowHandling(DateTime left, DateTime right);
         //Client 
         IEnumerable<Client> GetClient();
         ClientBl GetClient(int id);

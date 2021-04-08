@@ -22,11 +22,15 @@ namespace Hostel.Web.Controllers
         public IActionResult IndexAdmin()
         {
            
-            return View("IndexAdmin", _admin.GetClient());
+            return View("IndexAdmin", _admin.GetHandling());
         }
         public IActionResult ListHandling()
         {
             return View("Handlings", _admin.GetHandling());
+        }
+        public IActionResult ListNowHandling ()
+        {
+            return View("Handlings", _admin.GetNowHandling(DateTime.Now, DateTime.Now));
         }
         public IActionResult ListRoom()
         {
@@ -36,21 +40,21 @@ namespace Hostel.Web.Controllers
         {
             return View("Clients", _admin.GetClient());
         }
-        public IActionResult Handing(int id)
-        {
-            return View();
-        }
-        public IActionResult Room(int id)
-        {
-            return View();
-        }
+        //public IActionResult Handing(int id)
+        //{
+        //    return View();
+        //}
+        //public IActionResult Room(int id)
+        //{
+        //    return View();
+        //}
 
 
 
-        public IActionResult Client(int id)
-        {
-            return View();
-        }
+        //public IActionResult Client(int id)
+        //{
+        //    return View();
+        //}
 
 
     }

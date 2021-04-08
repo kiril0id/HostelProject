@@ -1,2 +1,70 @@
 ﻿@{ Layout = "_AdminLayout"; }
 @model List<Handling>
+
+    <table class="table">
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">
+                    Гость
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                    Дата заезда
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                    Дата выселения
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                    Комната
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                    Сервис1
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                    Сервис2
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                    Сервис3
+                </a>
+            </th>
+
+            <th></th>
+            <th></th>
+
+        </tr>
+
+        @foreach (Handling handling in Model)
+        {
+            <tr>
+
+                <td>@handling.IdClient</td>
+                <td>@handling.InCheck</td>
+                <td>@handling.OutCheck</td>
+                <td>@handling.IdRoom</td>
+                <td>@handling.IdService</td>
+                <td>@handling.IdService2</td>
+                <td>@handling.IdService3</td>
+
+
+                <td>
+
+                    <a class="btn btn-success btn-sm rounded-0" asp-action="Edit" asp-controller="Home" asp-route-id="@handling.Id">Изменить</a>
+                    <a class="btn btn-danger btn-sm rounded-0" asp-action="Delete" asp-controller="Home" asp-route-id="@handling.Id">Удалить</a>
+                </td>
+
+
+
+            </tr>
+        }
+    </table>
