@@ -33,7 +33,7 @@
                                     <ul class="dropdown-menu">
                                         @if (User.FindFirst(x => x.Type == ClaimTypes.Role).Value == "admin")
                                         {
-                                            <li><a asp-controller="Room" asp-action="AllRoom">admin</a></li>
+                                            <li><a asp-controller="Admin" asp-action="IndexAdmin">admin</a></li>
                                             <li><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="1">something</a></li>
                                         }
                                         else

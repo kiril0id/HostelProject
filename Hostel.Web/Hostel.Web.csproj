@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Hostel.BusinessLogic\Hostel.BusinessLogic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Admin\" />
-  </ItemGroup>
-
 </Project>

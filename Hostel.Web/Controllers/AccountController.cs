@@ -85,7 +85,7 @@ namespace Hostel.Web.Controllers
         {
             // создаем один claim
            
-            var claims = new List<Claim>
+             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, model.Email),        
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, ((RoleType)model.idRole).ToString())

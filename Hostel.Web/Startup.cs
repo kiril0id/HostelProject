@@ -34,6 +34,7 @@ namespace Hostel.Web
             services.AddAutoMapper(typeof(ProfileManager));
            services.AddTransient<IRoom, BookingRoom>();
             services.AddTransient<IAccount, SettingsAccount>();
+            services.AddTransient<IAdmin, Admin>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
         .AddCookie(options => //CookieAuthenticationOptions
         {
