@@ -32,7 +32,7 @@ namespace Hostel.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(Models.LoginModel model)
+        public async Task<IActionResult> Login(Models.LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace Hostel.Web.Controllers
             if (ModelState.IsValid)
             {
                 model.idRole = 1;
-                if (_acount.Register(_mapper.Map<ClientFullInformation>(model)))
+                if (_acount.Register(_mapper.Map<ClientBl>(model)))
                 {
                     // добавляем пользователя в бд
                     

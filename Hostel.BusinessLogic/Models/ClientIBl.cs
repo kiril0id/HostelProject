@@ -11,7 +11,7 @@ namespace Hostel.BusinessLogic.Models
         public string LastName { get; set; }
         public string Surname { get; set; }
         public string Passport { get; set; }
-        public DateTime? DatofBirth { get; set; }
+        public DateTime DatofBirth { get; set; }
         public string Adress { get; set; }
         public string Telephone { get; set; }
 

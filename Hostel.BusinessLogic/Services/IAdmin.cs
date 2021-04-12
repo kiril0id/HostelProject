@@ -9,23 +9,24 @@ namespace Hostel.BusinessLogic.Services
     public interface IAdmin
     {
         //Handling
-        IEnumerable<Handling> GetHandling();
-        bool CreateNewHandling(Handling handling);
+        IEnumerable<HandlingBl> GetHandling();
+        bool CreateHandling(HandlingBl handling);
         bool DeleteHandling(int id);
-        bool EditHandling(Handling handling);
-        IEnumerable<Handling> GetNowHandling(DateTime left, DateTime right);
+        bool EditHandling(HandlingBl handling);
+        IEnumerable<HandlingBl> GetNowHandling(DateTime left, DateTime right);
+        HandlingBl Handling(int id);
         //Client 
         IEnumerable<Client> GetClient();
         ClientBl GetClient(int id);
-        bool CreateNewClient(Client client);
-        bool EditClient(Client clietn);
+        bool CreateClient(ClientBl client);
+        bool EditClient(ClientBl client);
         bool DeleteClient(int id);
 
         //Room
-        
+        RoomBl GetRoom(int id);
         bool CreateRoom(RoomBl room);
         bool EditRoom(RoomBl room);
-        bool DeleteRomm(int id);
+        bool DeleteRoom(int id);
         //Employee
         
 

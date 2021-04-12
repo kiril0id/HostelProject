@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace Hostel.Web.Models
 {
-    public class ClientFullInformationView
+    public class ClientViewModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Surname { get; set; }
         public string Passport { get; set; }
-        public DateTime? DatofBirth { get; set; }
+        public DateTime DatofBirth { get; set; }
         public string Adress { get; set; }
         public string Telephone { get; set; }
 

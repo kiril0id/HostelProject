@@ -32,14 +32,14 @@ namespace Hostel.Web
             // добавляем контекст MobileContext в качестве сервиса в приложение
             services.AddDbContext<bdHostelContext>(options => options.UseSqlServer(connection));
             services.AddAutoMapper(typeof(ProfileManager));
-           services.AddTransient<IRoom, BookingRoom>();
+            services.AddTransient<IRoom, BookingRoom>();
             services.AddTransient<IAccount, SettingsAccount>();
             services.AddTransient<IAdmin, Admin>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie(options => //CookieAuthenticationOptions
-        {
-            options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-        });
+            .AddCookie(options => //CookieAuthenticationOptions
+            {
+                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+            });
 
             services.AddControllersWithViews();
         }

@@ -16,9 +16,9 @@ namespace Hostel.BusinessLogic.Services
             _context = context;
         }
 
-        public ClientFullInformation Login(LoginModel model)
+        public ClientBl Login(LoginModel model)
         {
-            var clientFull = new ClientFullInformation();
+            var clientFull = new ClientBl();
 
             ClientWeb clientWeb = _context.ClientWeb.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
             Client client = _context.Client.FirstOrDefault(u => u.Id == clientWeb.IdClient);
@@ -27,7 +27,7 @@ namespace Hostel.BusinessLogic.Services
             clientFull.LastName = client.LastName;
             clientFull.Surname = client.Surname;
             clientFull.Passport = client.Passport;
-            clientFull.DatofBirth = client.DatofBirth;
+            clientFull.DatofBirth = (DateTime)client.DatofBirth;
             clientFull.Adress = client.Adress;
             clientFull.Telephone = client.Telephone;
             clientFull.Email = clientWeb.Email;
@@ -37,7 +37,7 @@ namespace Hostel.BusinessLogic.Services
             return clientFull;
         }
 
-        public bool Register(ClientFullInformation client)
+        public bool Register(ClientBl client)
         {
             try
             {

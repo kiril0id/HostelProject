@@ -8,7 +8,7 @@ namespace Hostel.BusinessLogic.Models
     {
         public int Id { get; set; }
         public int? Number { get; set; }
-        public decimal? Cost { get; set; }
+        public int? Cost { get; set; }
         public int? Сapacity { get; set; }
         public string Type { get; set; }
 

@@ -8,8 +8,8 @@ namespace Hostel.BusinessLogic.Services
 {
    public  interface IAccount
    {
-         ClientFullInformation Login(LoginModel model);
-         bool Register(ClientFullInformation client);
+         ClientBl Login(LoginModel model);
+         bool Register(ClientBl client);
 
     }
 }

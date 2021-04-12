@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hostel.Web.Models
 {
-    public class LoginModel
+    public class LoginViewModel
     {
         [Required(ErrorMessage = "Не указан Email")]
         public string Email { get; set; }

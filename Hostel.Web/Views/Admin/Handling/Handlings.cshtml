@@ -1,5 +1,9 @@
 ﻿@{ Layout = "_AdminLayout"; }
-@model List<Handling>
+@model List<Hostel.BusinessLogic.Models.HandlingBl>
+
+    <div class="pb-2">
+        <a class="btn btn-outline-primary" role="button" asp-controller="Admin" asp-action="CreateHandling">Добавить обслуживание</a>
+    </div>
 
     <table class="table">
         <tr>
@@ -44,14 +48,14 @@
 
         </tr>
 
-        @foreach (Handling handling in Model)
+        @foreach (var handling in Model)
         {
             <tr>
 
-                <td>@handling.IdClient</td>
+                <td><a asp-action="Client" asp-controller="Admin" asp-route-id="@handling.IdClient">@handling.LastName</a></td>
                 <td>@handling.InCheck</td>
                 <td>@handling.OutCheck</td>
-                <td>@handling.IdRoom</td>
+                <td><a asp-action="Room" asp-controller="Admin" asp-route-id="@handling.IdRoom" >@handling.Room</a></td>
                 <td>@handling.IdService</td>
                 <td>@handling.IdService2</td>
                 <td>@handling.IdService3</td>
@@ -59,8 +63,8 @@
 
                 <td>
 
-                    <a class="btn btn-success btn-sm rounded-0" asp-action="Edit" asp-controller="Home" asp-route-id="@handling.Id">Изменить</a>
-                    <a class="btn btn-danger btn-sm rounded-0" asp-action="Delete" asp-controller="Home" asp-route-id="@handling.Id">Удалить</a>
+                    <a class="btn btn-success btn-sm rounded-0" asp-action="Handling" asp-controller="Admin" asp-route-id="@handling.Id">Подробнее</a>
+                    <a class="btn btn-danger btn-sm rounded-0" asp-action="Delete" asp-controller="Admin" asp-route-id="@handling.Id">Удалить</a>
                 </td>
 
 

@@ -1,11 +1,15 @@
 ﻿@{ Layout = "_AdminLayout"; }
 @model List<Room>
 
-<table class="table">
+    <div class="pb-2">
+        <a class="btn btn-outline-primary" role="button" asp-controller="Admin" asp-action="CreateRoom">Добавить комнату</a>
+    </div>
+    
+<table class="table"> 
     <tr>
        
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">э
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">
             Номер
             </a>
         </th>
@@ -34,9 +38,9 @@
             <td>@room.Сapacity</td>
             <td>@room.Type
             <td>
-                <a class="btn btn-warning btn-sm rounded-0" asp-action="Edit" asp-controller="Home" asp-route-id="@room.Id">Подробнее</a>
-                <a class="btn btn-success btn-sm rounded-0" asp-action="Edit" asp-controller="Home" asp-route-id="@room.Id">Изменить</a>
-                <a class="btn btn-danger btn-sm rounded-0" asp-action="Delete" asp-controller="Home" asp-route-id="@room.Id">Удалить</a>
+                <a class="btn btn-warning btn-sm rounded-0" asp-action="Room" asp-controller="Admin" asp-route-id="@room.Id">Подробнее</a>
+
+                <a class="btn btn-danger btn-sm rounded-0" asp-action="DeleteRoom" asp-controller="Admin" asp-route-id="@room.Id">Удалить</a>
             </td>
         </tr>
      }

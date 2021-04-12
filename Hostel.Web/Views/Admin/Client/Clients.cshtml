@@ -1,0 +1,61 @@
+﻿@{ Layout = "_AdminLayout"; }
+@model List<Client>
+
+<div class="pb-2">
+    <a class="btn btn-outline-primary" role="button" asp-controller="Admin" asp-action="CreateClient">Добавить клиента</a>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">
+                Имя
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                Фамилия
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                Отчество
+            </a>
+        </th>
+
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                Дата рождения
+            </a>
+        </th>
+
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                Телефон
+            </a>
+        </th>
+        <th></th>
+        <th></th>
+
+    </tr>
+
+    @foreach (Client client in Model)
+    {
+        <tr>
+            <td>@client.FirstName</td>
+            <td>@client.LastName</td>
+            <td>@client.Surname</td>
+
+            <td>@client.DatofBirth</td>
+
+            <td>@client.Telephone</td>
+            <td>
+                <a class="btn btn-warning btn-sm rounded-0" asp-action="Client" asp-controller="Admin" asp-route-id="@client.Id">Подробнее</a>
+
+                <a class="btn btn-danger btn-sm rounded-0" asp-action="Delete" asp-controller="Admin" asp-route-id="@client.Id">Удалить</a>
+            </td>
+
+
+
+        </tr>
+    }
+</table>
