@@ -1,48 +1,235 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Hostel.Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="shortcut icon" href="~/images/favicon/favicon.png">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header class="header">
+        <div class="header-top">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hostel.Web</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="row">
+                    <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                        <div class="header-location"><i class="fa fa-home"></i> <a href="#">455 Martinson, Los Angeles</a></div>
+                        <div class="header-email"><i class="fa fa-envelope-o"></i> <a href="mailto:support@email.com">support@email.com</a></div>
+                        <div class="header-phone"><i class="fa fa-phone"></i> <a href="#">8 (043) 567 - 89 - 30</a></div>
+
+
+                    </div>
+                    <div class="collapse navbar-collapse navbar-main-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">@User.FindFirst(x => x.Type == ClaimTypes.Role).Value  <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        @if (User.FindFirst(x => x.Type == ClaimTypes.Role).Value == "admin")
+                                        {
+                                            <li><a asp-controller="Admin" asp-action="IndexAdmin">admin</a></li>
+                                            <li><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="1">something</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a asp-controller="Room" asp-action="AllRoom">Booking</a>
+                                            </li>
+                                        }
+                                        <li>
+                                            <a  asp-controller="Room" asp-action="AllRoom">Profile</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Account" asp-action="Logout">Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a asp-controller="Account" asp-action="Login">Login</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
+                            }
+                        </ul>
+                            
+                                        
+                                        
+                    </div>
                 </div>
+
             </div>
-        </nav>
+        </div>
+        <div class="header-bottom">
+            <nav class="navbar navbar-universal navbar-custom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="logo"><a asp-controller="Home" asp-action="Index" class="navbar-brand page-scroll"><img src="~/images/logo/logo.png" alt="logo" /></a></div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="navbar-header">
+                                <button type="button" data-toggle="collapse" data-target=".navbar-main-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                            </div>
+                            <div class="collapse navbar-collapse navbar-main-collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class=" active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pages <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="about-us.html">About Us</a></li>
+                                            <li><a href="contacts.html">Contacts</a></li>
+                                            <li><a href="faq.html">F.A.Q</a></li>
+                                            <li><a href="gallery.html">Gallery</a></li>
+                                            <li><a href="404.html">404 Page Not Found</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="wizzard-step1.html">Reservation</a></li>
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rooms <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a asp-controller="Room" asp-action="AllRoom">All Rooms</a></li>
+                                            <li><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="1">Room Detail</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blog <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="blog.html">All Posts</a></li>
+                                            <li><a href="blog-detail.html">Post Detail</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Purchase</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <div>
+        <main>
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Hostel.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="footer-top_logo"><a href="index.html"><img src="~/images/logo/logo.png" alt="Footer logo" /></a></div>
+                        <div class="footer-top_txt">
+                            <p>Continual delighted as elsewhere am convinced unfeeling. Introduced stimulated attachment no by projection. To lady whom my mile sold four need introduced.</p>
+                        </div>
+                        <div class="footer-top_address">
+                            <div><i class="fa fa-phone"></i> Phone: <span>8 (043) 567 - 89 - 30</span></div>
+                            <div><i class="fa fa-envelope-o"></i> E-mail: <span><a href="mailto:support@email.com">support@email.com</a></span></div>
+                            <div><i class="fa fa-home"></i> Location: <span>455 Martinson, Los Angeles</span></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="footer-top_rooms">
+                            <ul>
+                                <li>
+                                    <div class="rooms_img">
+                                        <a href="blog-detail.html"><img src="~/images/footer/1.jpg" alt="" /></a>
+                                    </div>
+                                    <div class="rooms_info">
+                                        <div class="rooms_t"><a href="blog-detail.html">Grang Super Luxury</a></div>
+                                        <div class="rooms_props">3 Bed  /  Wi-Fi  /  2 - Bathroom<span>$119</span></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="rooms_img">
+                                        <a href="blog-detail.html"><img src="~/images/footer/2.jpg" alt="" /></a>
+                                    </div>
+                                    <div class="rooms_info">
+                                        <div class="rooms_t"><a href="blog-detail.html">President Room</a></div>
+                                        <div class="rooms_props">4 Bed  /  Wi-Fi  /  3 - Bathroom<span>$329</span></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="rooms_img">
+                                        <a href="blog-detail.html"><img src="~/images/footer/3.jpg" alt="" /></a>
+                                    </div>
+                                    <div class="rooms_info">
+                                        <div class="rooms_t"><a href="blog-detail.html">Spa Double Room</a></div>
+                                        <div class="rooms_props">2 Bed  /  Wi-Fi  /  2 - Bathroom<span>$749</span></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 marg-sm-50 col-xs-12">
+                        <div class="footer-top_contact_form">
+                            <div>Contact Form</div>
+                            <form action="mail.php" method="POST" class="row form-horizontal form-wizzard">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="name" class="form-control" placeholder="Name ..." />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" name="email" class="form-control" placeholder="Email ..." />
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <textarea rows="6" name="message" class="form-control" placeholder="Message ..."></textarea>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+                                    <input type="submit" value="Send message" class="btn btn-default" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer-bottom_copy">Copyright © 2016 DeluxHotel. Design by <a href="https://themeforest.net/user/Dankov" target="_blank">Dankov</a></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer-bottom_links">
+                            <a class="active" href="index.html">Home</a>
+                            <a href="gallery.html">Gallery</a>
+                            <a href="blog.html">Blog</a>
+                            <a href="wizzard-step1.html">Reservation</a>
+                            <a href="#">Purchase</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    </div>
+    <!-- /footer -->
+
+    <script type="text/javascript" src="~/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/tether.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.smartmenus.js"></script>
+    <script type="text/javascript" src="~/js/jquery.parallax.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.shuffle.min.js"></script>
+    <script type="text/javascript" src="~/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="~/js/map.js"></script>
+    <script type="text/javascript" src="~/js/main.js"></script>
+
+
 </body>
 </html>

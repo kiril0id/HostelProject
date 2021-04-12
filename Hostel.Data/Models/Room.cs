@@ -11,11 +11,12 @@ namespace Hostel.Data.Models
         }
 
         public int Id { get; set; }
-        public int Number { get; set; }
-        public decimal Cost { get; set; }
-        public int Сapacity { get; set; }
+        public int? Number { get; set; }
+        public decimal? Cost { get; set; }
+        public int? Сapacity { get; set; }
         public string Type { get; set; }
 
+        public virtual RoomProp RoomProp { get; set; }
         public virtual ICollection<Handling> Handling { get; set; }
     }
 }

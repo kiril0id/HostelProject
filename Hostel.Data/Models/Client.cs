@@ -19,6 +19,7 @@ namespace Hostel.Data.Models
         public string Adress { get; set; }
         public string Telephone { get; set; }
 
+        public virtual ClientWeb ClientWeb { get; set; }
         public virtual ICollection<Handling> Handling { get; set; }
     }
 }

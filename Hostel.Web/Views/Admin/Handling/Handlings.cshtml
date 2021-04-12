@@ -1,0 +1,74 @@
+﻿@{ Layout = "_AdminLayout"; }
+@model List<Hostel.BusinessLogic.Models.HandlingBl>
+
+    <div class="pb-2">
+        <a class="btn btn-outline-primary" role="button" asp-controller="Admin" asp-action="CreateHandling">Добавить обслуживание</a>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">
+                    Гость
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                    Дата заезда
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                    Дата выселения
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                    Комната
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                    Сервис1
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                    Сервис2
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                    Сервис3
+                </a>
+            </th>
+
+            <th></th>
+            <th></th>
+
+        </tr>
+
+        @foreach (var handling in Model)
+        {
+            <tr>
+
+                <td><a asp-action="Client" asp-controller="Admin" asp-route-id="@handling.IdClient">@handling.LastName</a></td>
+                <td>@handling.InCheck</td>
+                <td>@handling.OutCheck</td>
+                <td><a asp-action="Room" asp-controller="Admin" asp-route-id="@handling.IdRoom" >@handling.Room</a></td>
+                <td>@handling.IdService</td>
+                <td>@handling.IdService2</td>
+                <td>@handling.IdService3</td>
+
+
+                <td>
+
+                    <a class="btn btn-success btn-sm rounded-0" asp-action="Handling" asp-controller="Admin" asp-route-id="@handling.Id">Подробнее</a>
+                    <a class="btn btn-danger btn-sm rounded-0" asp-action="Delete" asp-controller="Admin" asp-route-id="@handling.Id">Удалить</a>
+                </td>
+
+
+
+            </tr>
+        }
+    </table>

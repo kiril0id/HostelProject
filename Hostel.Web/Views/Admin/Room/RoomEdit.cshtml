@@ -1,0 +1,84 @@
+﻿@{ Layout = "_AdminLayout"; }
+@model RoomViewModel
+
+<form asp-action="EditRoom" asp-controller="Admin" asp-route-id="@Model.Id">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label asp-for="Number" class="control-label">Номер</label>
+            <input type="number" asp-for="Number" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Cost" class="control-label">Стоимость</label>
+            <input type="number" asp-for="Cost" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="Type" class="control-label">Тип</label>
+            @*<input type="number" asp-for="Type" class="form-control" />*@
+            <select class="custom-select mr-sm-2" asp-for="Type">
+                
+                <option value="economic">economic</option>12
+                <option value="standart">standart</option>
+                <option value="luxury">luxury</option>
+                <option value="double">double</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Сapacity" class="control-label">Количество мест</label>
+            <input type="number" asp-for="Сapacity" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Bed" class="control-label">Количество кроватей</label>
+            <input type="number" asp-for="Bed" class="form-control" />
+        </div>
+    </div>
+    <fieldset class="form-group">
+        <div class="form-row">
+            <legend class="col-form-label col-sm-2 pt-0">Дополнение:</legend>
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Shower" class="form-check-input" />
+                        <label asp-for="Shower" class="form-check-label">Душь</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Restroom" class="form-check-input" />
+                        <label asp-for="Restroom" class="form-check-label">Удобства</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Wifi" class="form-check-input" />
+                        <label asp-for="Wifi" class="form-check-label">Wifi</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Tv" class="form-check-input" />
+                        <label asp-for="Tv" class="form-check-label">Телевизор</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="Fridge" class="form-check-input" />
+                        <label asp-for="Fridge" class="form-check-label">Холодильник</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="Description" class="control-label">Описание:</label>
+            <textarea type="text" asp-for="Description" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-primary" />
+    </div>
+</form>

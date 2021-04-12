@@ -11,7 +11,7 @@ namespace Hostel.Data.Models
         }
 
         public int Id { get; set; }
-        public int Code { get; set; }
+        public int? Code { get; set; }
 
         public virtual ICollection<Handling> Handling { get; set; }
     }

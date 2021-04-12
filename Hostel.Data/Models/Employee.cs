@@ -17,7 +17,7 @@ namespace Hostel.Data.Models
         public DateTime? DatofBirth { get; set; }
         public string Telephone { get; set; }
         public string Passport { get; set; }
-        public int IdPosition { get; set; }
+        public int? IdPosition { get; set; }
 
         public virtual Position IdPositionNavigation { get; set; }
         public virtual ICollection<Handling> Handling { get; set; }

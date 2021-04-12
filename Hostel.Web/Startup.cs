@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hostel.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Hostel.BusinessLogic.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Hostel.Web
 {
@@ -23,6 +27,20 @@ namespace Hostel.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            // добавляем контекст MobileContext в качестве сервиса в приложение
+            services.AddDbContext<bdHostelContext>(options => options.UseSqlServer(connection));
+            services.AddAutoMapper(typeof(ProfileManager));
+            services.AddTransient<IRoom, BookingRoom>();
+            services.AddTransient<IAccount, SettingsAccount>();
+            services.AddTransient<IAdmin, Admin>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options => //CookieAuthenticationOptions
+            {
+                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+            });
+
             services.AddControllersWithViews();
         }
 
@@ -42,12 +60,21 @@ namespace Hostel.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting();         
 
-            app.UseAuthorization();
+          
+
+            app.UseAuthentication();    // аутентификация
+            app.UseAuthorization();     // авторизация
+
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //    name: "room",
+                //    pattern: "RoomList",
+                //    defaults: new { controller = "Room", action = "ListFreeRoom" });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

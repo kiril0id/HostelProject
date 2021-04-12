@@ -1,0 +1,67 @@
+﻿@{ Layout = "_AdminLayout"; }
+@model ClientViewModel
+
+<form asp-action="EditClient" asp-controller="Admin" asp-route-id="@Model.Id">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label asp-for="FirstName" class="control-label">Имя</label>
+            <input type="text" asp-for="FirstName" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="LastName" class="control-label">Фамилия</label>
+            <input type="text" asp-for="LastName" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label asp-for="Surname" class="control-label">Отчество</label>
+            <input type="text" asp-for="Surname" class="form-control" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label asp-for="Passport" class="control-label">Паспорт</label>
+            <input type="text" asp-for="Passport" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="DatofBirth" class="control-label">Дата Рождения</label>
+            <input type="date" asp-for="DatofBirth" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Adress" class="control-label">Адрес</label>
+            <input type="text" asp-for="Adress" class="form-control" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label asp-for="Email" class="control-label">Email</label>
+            <input type="email" asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Password" class="control-label">Пароль</label>
+            <input type="text" asp-for="Password" class="form-control" />
+        </div>
+        @*<div class="form-group col-md-4">
+            <label asp-for="Password" class="control-label">Пароль</label>
+            <input type="text" asp-for="Password" class="form-control" />
+        </div>*@
+        <div class="form-group col-md-4">
+            <label asp-for="Telephone" class="control-label">Телефон</label>
+            <input type="tel" asp-for="Telephone" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="idRole" class="control-label">Позиция</label>
+            @*<input type="number" asp-for="Type" class="form-control" />*@
+            <select class="custom-select mr-sm-2" asp-for="idRole">
+
+                <option value="1">user</option>
+                <option value="2">moderator</option>
+                <option value="3">admin</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-primary" />
+    </div>
+</form>
+

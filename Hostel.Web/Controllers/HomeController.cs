@@ -6,22 +6,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Hostel.Web.Models;
+using Hostel.BusinessLogic.Services;
+using Hostel.Data.Models;
 
 namespace Hostel.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IRoom _room;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IRoom room)
         {
-            _logger = logger;
+            _room = room;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
+
             return View();
         }
+        //[HttpPost]
+        //public IActionResult Index(string leftDate, string rightDate)
+        //{
+        //    var left = Convert.ToDateTime(leftDate);
+        //    var right = Convert.ToDateTime(rightDate);
+        //    return View(@"~\Views\Room\ListFreeRoom.cshtml", _room.GetAllFreeRooms(left, right));
+        //}
 
         public IActionResult Privacy()
         {
