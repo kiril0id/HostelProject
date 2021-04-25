@@ -15,6 +15,11 @@ namespace Hostel.Web.Controllers
     {
         private readonly IRoom _room;
 
+        private const string cookieDateLeft = "DateLeft";
+        private const string cookieDateRight = "DateRight";
+        private const string cookieIdRoom = "IdRoom";
+        private const string cookieClient = "Client";
+
         public HomeController(IRoom room)
         {
             _room = room;
@@ -23,7 +28,16 @@ namespace Hostel.Web.Controllers
         public IActionResult Index()
         {
 
+            ViewBag.TypeRoom = _room.Types();
             return View();
+        }
+        [HttpPost]
+        public IActionResult Index(string left, string right, string type)
+        {
+            var leftDate = Convert.ToDateTime(left);
+            var rightDate = Convert.ToDateTime(right);
+
+            return RedirectToAction("DashboardRoom", "BookingRoom", new RoomFreeViewModel { InCheck = leftDate, OutCheck = rightDate, Type = type });
         }
         //[HttpPost]
         //public IActionResult Index(string leftDate, string rightDate)

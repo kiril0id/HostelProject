@@ -18,7 +18,7 @@ namespace Hostel.BusinessLogic.Services
         //Client 
         IEnumerable<Client> GetClient();
         ClientBl GetClient(int id);
-        bool CreateClient(ClientBl client);
+        int? CreateClient(ClientBl client);
         bool EditClient(ClientBl client);
         bool DeleteClient(int id);
 
@@ -28,7 +28,17 @@ namespace Hostel.BusinessLogic.Services
         bool EditRoom(RoomBl room);
         bool DeleteRoom(int id);
         //Employee
-        
+
+        //Service
+        IEnumerable<ServiceBl> GetService();
+        ServiceBl GetService(int id);
+        bool CreateService(ServiceBl client);
+        bool EditService(ServiceBl client);
+        bool DeleteService(int id);
+
+        //booking
+
+        BookingBl GetBooking(int IdClient, int IdRoom);
 
     }
 }

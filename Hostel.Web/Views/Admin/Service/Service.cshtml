@@ -1,0 +1,27 @@
+﻿@{ Layout = "_AdminLayout"; }
+@model ServiceViewModel
+
+
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label asp-for="Id" class="control-label">Id</label>
+            <input readonly="readonly" type="number" asp-for="Id" class="form-control" />
+        </div>
+        <div class="form-group col-md-2">
+            <label asp-for="NameService" class="control-label">Название</label>
+            <input readonly="readonly" type="text" asp-for="NameService" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Cost" class="control-label">Стоимость</label>
+            <input readonly="readonly" type="number" asp-for="Cost" class="form-control" />
+        </div>
+    </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Description" class="control-label">Описание</label>
+                <textarea readonly="readonly" asp-for="Description" rows="3" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <a class="btn btn-success" asp-action="EditService" asp-controller="Admin" asp-route-id="@Model.Id ">Изменить</a>
+

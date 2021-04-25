@@ -21,14 +21,20 @@ namespace Hostel.Web
                     dest.Password,
                     opt => opt.MapFrom(src => src.Password));
             CreateMap<ClientBl, ClientViewModel>();
-            CreateMap< ClientViewModel,ClientBl >();
+            CreateMap<ClientViewModel, ClientBl>();
             CreateMap<LoginModel, LoginViewModel>();
             CreateMap<LoginViewModel, LoginModel>();
             //CreateMap<ClientFullInformation, ClientFullInformationView>();
             CreateMap<RoomBl, RoomViewModel>();
             CreateMap<RoomViewModel, RoomBl>();
             CreateMap<HandlingBl, HandlingViewModel>();
-            CreateMap<HandlingViewModel,HandlingBl>();
+            CreateMap<HandlingViewModel, HandlingBl>();
+            CreateMap<ServiceBl, ServiceViewModel>();
+            CreateMap<ServiceViewModel, ServiceBl>();
+            CreateMap<BookingViewModel, BookingBl>();
+            CreateMap<BookingBl, BookingViewModel>();
+            CreateMap<RoomFreeViewModel, RoomFreeBl>();
+            CreateMap<RoomFreeBl, RoomFreeViewModel>();
         }
     }
 }
