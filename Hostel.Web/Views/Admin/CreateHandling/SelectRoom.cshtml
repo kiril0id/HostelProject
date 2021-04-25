@@ -1,0 +1,57 @@
+﻿@{ Layout = "_AdminLayout"; }
+@model List<Room>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="control-label">Заселение</label>
+            <input readonly="readonly" type="text" value="@ViewBag.left" class="form-control" />
+
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">Выселение</label>
+            <input readonly="readonly" type="text" value="@ViewBag.right" class="form-control" />
+        </div>
+
+       
+    </div>
+<table class="table">
+    <tr>
+
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">
+                Номер
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                Стоимость
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                Вместимость
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.WageSort">
+                Тип
+            </a>
+        </th>
+    </tr>
+
+    @foreach (Room room in Model)
+    {
+        <tr>
+            <td>@room.Number</td>
+            <td>@room.Cost</td>
+            <td>@room.Сapacity</td>
+            <td>@room.Type
+            <td>
+                <a class="btn btn-warning btn-sm rounded-0" asp-action="Room" asp-controller="Admin" asp-route-id="@room.Id">Подробнее</a>
+
+                <a class="btn btn-danger btn-sm rounded-0" asp-action="SelectRoomEnd" asp-controller="Admin" asp-route-id="@room.Id">Выбрать</a>
+            </td>
+        </tr>
+    }
+</table>

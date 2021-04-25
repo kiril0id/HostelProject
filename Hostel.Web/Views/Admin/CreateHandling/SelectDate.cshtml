@@ -1,0 +1,21 @@
+﻿@{ Layout = "_AdminLayout"; }
+@model DateViewModel    
+
+<form asp-action="SelectDate" asp-controller="Admin">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Left" class="control-label">Заезд</label>
+            <input type="date" asp-for="Left" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Right" class="control-label">Выезд</label>
+            <input type="date" asp-for="Right" class="form-control" />
+        </div>
+
+        
+    </div>
+    
+    <div class="form-group">
+        <input type="submit" value="Наайти" class="btn btn-primary" />
+    </div>
+</form>

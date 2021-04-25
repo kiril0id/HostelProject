@@ -15,7 +15,7 @@ namespace Hostel.BusinessLogic.Services
         {
             _context = context;
         }
-        public bool CreateClient(ClientBl client)
+        public int? CreateClient(ClientBl client)
         {
 
             try
@@ -30,7 +30,7 @@ namespace Hostel.BusinessLogic.Services
                 cl.DatofBirth = (DateTime)client.DatofBirth;
                 cl.Adress = client.Adress;
                 cl.Telephone = client.Telephone;
-                
+
 
                 _context.Client.Add(cl);
                 _context.SaveChanges();
@@ -46,12 +46,12 @@ namespace Hostel.BusinessLogic.Services
                 _context.ClientWeb.Add(clientWeb);
                 _context.SaveChanges();
 
-                return true;
+                return cl.Id;
             }
             catch (Exception ex)
-            { 
+            {
                 var x = ex.Message;
-                return false;
+                return null;
                 throw;
             }
 
@@ -63,22 +63,22 @@ namespace Hostel.BusinessLogic.Services
             {
                 Handling handling1 = new Handling
                 {
-                    Id = handling.Id,
+
                     IdClient = handling.IdClient,
                     InCheck = handling.InCheck,
                     OutCheck = handling.OutCheck,
                     IdRoom = handling.IdRoom,
-                    IdService = handling.IdService,
-                    IdService2 = handling.IdService2,
-                    IdService3 = handling.IdService3,
-                    IdBooking = handling.IdBooking,
+                    IdService = handling.IdService == 0 ? null : handling.IdService,
+                    IdService2 = handling.IdService2 == 0 ? null : handling.IdService2,
+                    IdService3 = handling.IdService3 == 0 ? null : handling.IdService3,
+                    IdBooking = handling.IdBooking == 0 ? null : handling.IdBooking,
                     IdEmployee = handling.IdEmployee,
                 };
                 _context.Handling.Add(handling1);
                 _context.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
                 throw;
@@ -126,7 +126,7 @@ namespace Hostel.BusinessLogic.Services
         {
             try
             {
-                Handling handling =  _context.Handling.FirstOrDefault(p => p.Id == id);
+                Handling handling = _context.Handling.FirstOrDefault(p => p.Id == id);
                 _context.Handling.Remove(handling);
                 _context.SaveChanges();
                 return true;
@@ -242,7 +242,7 @@ namespace Hostel.BusinessLogic.Services
 
                 throw;
             }
-            
+
         }
 
         public bool EditRoom(RoomBl room)
@@ -280,7 +280,7 @@ namespace Hostel.BusinessLogic.Services
                 {
                     _context.RoomProp.Update(roomProp);
                 }
-                
+
                 _context.SaveChanges();
                 return true;
             }
@@ -314,7 +314,7 @@ namespace Hostel.BusinessLogic.Services
                 //        Password = t.Password,
                 //        idRole = (int)t.IdRole,
                 //    });
-                return _context.Client.ToList(); 
+                return _context.Client.ToList();
             }
             catch (Exception)
             {
@@ -325,7 +325,7 @@ namespace Hostel.BusinessLogic.Services
 
         public ClientBl GetClient(int id)
         {
-            Client client =  _context.Client.FirstOrDefault(p => p.Id == id);
+            Client client = _context.Client.FirstOrDefault(p => p.Id == id);
             ClientWeb clientWeb = _context.ClientWeb.FirstOrDefault(p => p.IdClient == id);
             ClientBl clientBl = new ClientBl
             {
@@ -334,13 +334,13 @@ namespace Hostel.BusinessLogic.Services
                 LastName = client.LastName,
                 Surname = client.Surname,
                 Passport = client.Passport,
-                DatofBirth = client.DatofBirth == null? DateTime.Now : (DateTime)client.DatofBirth,
+                DatofBirth = client.DatofBirth == null ? DateTime.Now : (DateTime)client.DatofBirth,
                 Adress = client.Adress,
                 Telephone = client.Telephone,
 
                 Email = clientWeb.Email,
                 Password = clientWeb.Password,
-                idRole = clientWeb.IdRole == null? 0:(int)clientWeb.IdRole,
+                idRole = clientWeb.IdRole == null ? 0 : (int)clientWeb.IdRole,
             };
             return clientBl;
         }
@@ -349,9 +349,9 @@ namespace Hostel.BusinessLogic.Services
         {
             var handling = _context.Handling.ToList();
             List<HandlingBl> handlingBl = new List<HandlingBl>();
-             
+
             foreach (var item in handling)
-            {                          
+            {
                 handlingBl.Add(new HandlingBl
                 {
                     Id = item.Id,
@@ -368,7 +368,7 @@ namespace Hostel.BusinessLogic.Services
                     IdEmployee = item.IdEmployee
                 });
             }
-            
+
             return handlingBl;
         }
 
@@ -376,8 +376,8 @@ namespace Hostel.BusinessLogic.Services
         {
             return (from tab2 in GetHandling()
                     where ((tab2.InCheck > left) && (tab2.OutCheck < right)) || ((tab2.InCheck < left) && (tab2.OutCheck > left)) || ((tab2.InCheck < right) && (tab2.OutCheck > right))
-                      
-                       select tab2).ToList();
+
+                    select tab2).ToList();
             //_context.Handling.Where(p => p.InCheck < left && p.OutCheck > right).ToList();
         }
 
@@ -397,12 +397,12 @@ namespace Hostel.BusinessLogic.Services
                     Type = room.Type,
 
                     Shower = false,
-                    Restroom =  false,
+                    Restroom = false,
                     Description = "",
-                    Bed =  0,
+                    Bed = 0,
                     Wifi = false,
-                    Tv =  false,
-                    Fridge =  false,
+                    Tv = false,
+                    Fridge = false,
                 };
             }
             else
@@ -447,6 +447,112 @@ namespace Hostel.BusinessLogic.Services
                 IdBooking = handling.IdBooking == null ? 0 : handling.IdBooking,
                 IdEmployee = handling.IdEmployee
             };
+        }
+
+        public IEnumerable<ServiceBl> GetService()
+        {
+            var service = _context.Service.ToList();
+            List<ServiceBl> serviceBl = new List<ServiceBl>();
+            foreach (var item in service)
+            {
+                serviceBl.Add(new ServiceBl
+                {
+                    Id = item.Id,
+                    NameService = item.NameService,
+                    Description = item.Description,
+                    Cost = (int)item.Cost,
+                });
+            }
+
+            return serviceBl;
+        }
+
+        public ServiceBl GetService(int id)
+        {
+            Service service = _context.Service.FirstOrDefault(p => p.Id == id);
+            return new ServiceBl
+            {
+                Id = service.Id,
+                Cost = service.Id,
+                Description = service.Description,
+                NameService = service.NameService
+            };
+        }
+
+        public bool CreateService(ServiceBl service)
+        {
+            try
+            {
+                _context.Service.Add(new Service
+                {
+                    Id = service.Id,
+                    Cost = service.Cost,
+                    Description = service.Description,
+                    NameService = service.NameService
+                });
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+
+        }
+
+        public bool EditService(ServiceBl service)
+        {
+            try
+            {
+                _context.Service.Update(new Service
+                {
+                    Id = service.Id,
+                    Cost = service.Cost,
+                    Description = service.Description,
+                    NameService = service.NameService
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public bool DeleteService(int id)
+        {
+            try
+            {
+                Service service = _context.Service.FirstOrDefault(p => p.Id == id);
+                _context.Service.Remove(service);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public BookingBl GetBooking(int IdClient, int IdRoom)
+        {
+            ClientBl clientBl = GetClient(IdClient);
+            RoomBl roomBl = GetRoom(IdRoom);
+            HandlingBl handlingBl = new HandlingBl();
+            BookingBl bookingBl = new BookingBl
+            {
+                client = clientBl,
+                room = roomBl,
+                handling = handlingBl,
+
+            };
+            return bookingBl;
+
         }
     }
 }

@@ -1,0 +1,44 @@
+﻿@{ Layout = "_AdminLayout"; }
+@model List<Hostel.BusinessLogic.Models.ServiceBl>
+
+<div class="pb-2">
+    <a class="btn btn-outline-primary" role="button" asp-controller="Admin" asp-action="CreateService">Добавить сервис</a>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">
+                Id
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                Стоимость
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.DepartmentSort">
+                Название
+            </a>
+        </th>
+        
+    </tr>
+
+    @foreach (var service in Model)
+        {
+           
+    
+        <tr>
+            <td>@service.Id</td>
+            <td>@service.Cost</td>
+            <td>@service.NameService</td>
+         
+            <td>
+                <a class="btn btn-warning btn-sm rounded-0" asp-action="Service" asp-controller="Admin" asp-route-id="@service.Id">Подробнее</a>
+
+                <a class="btn btn-danger btn-sm rounded-0" asp-action="DeleteService" asp-controller="Admin" asp-route-id="@service.Id">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>

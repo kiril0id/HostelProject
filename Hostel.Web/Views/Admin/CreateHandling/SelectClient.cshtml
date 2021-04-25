@@ -2,7 +2,23 @@
 @model List<Client>
 
 <div class="pb-2">
-    <a class="btn btn-outline-primary" role="button" asp-controller="Admin" asp-action="CreateClient">Добавить клиента</a>
+    <a class="btn btn-outline-primary" role="button" asp-controller="Admin" asp-action="CreateClientForBooking">Добавить клиента</a>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label class="control-label">Заселение</label>
+        <input readonly="readonly" type="text" value="@ViewBag.left" class="form-control" />
+
+    </div>
+    <div class="form-group col-md-6">
+        <label class="control-label">Выселение</label>
+        <input readonly="readonly" type="text" value="@ViewBag.right" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-2">
+        <label class="control-label">Idroom</label>
+        <input readonly="readonly" type="number" value="@ViewBag.idRoom" class="form-control" />
+    </div>
 </div>
 <table class="table">
     <tr>
@@ -51,7 +67,7 @@
             <td>
                 <a class="btn btn-warning btn-sm rounded-0" asp-action="Client" asp-controller="Admin" asp-route-id="@client.Id">Подробнее</a>
 
-                <a class="btn btn-danger btn-sm rounded-0" asp-action="DeleteClient" asp-controller="Admin" asp-route-id="@client.Id">Удалить</a>
+                <a class="btn btn-danger btn-sm rounded-0" asp-action="SelectClientEnd" asp-controller="Admin" asp-route-id="@client.Id">Выбрать </a>
             </td>
 
 

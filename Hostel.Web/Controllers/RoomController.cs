@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Hostel.BusinessLogic.Services;
+using Hostel.Web.Models;
+using AutoMapper;
+using Hostel.BusinessLogic.Models;
 
 namespace Hostel.Web.Controllers
 {
     public class RoomController : Controller
     {
         private readonly IRoom _room;
+        private readonly IMapper _mapper;
 
-        public RoomController(IRoom room)
+        public RoomController(IRoom room, IMapper mapper)
         {
             _room = room;
+            _mapper = mapper;
         }
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
-        [HttpGet]
-        public IActionResult ListFreeRoom(string leftDate, string rightDate)
+
+        public IActionResult ListFreeRoom(RoomFreeViewModel room)
         {
             //var left= Convert.ToDateTime(leftDate); 
             //var right= Convert.ToDateTime(rightDate);
@@ -30,16 +30,19 @@ namespace Hostel.Web.Controllers
             //ViewBag.right = right.ToShortDateString();
             //return View("ListFreeRoom", _room.GetAllFreeRooms(left, right));
 
-            var left = Convert.ToDateTime(leftDate);
-            var right = Convert.ToDateTime(rightDate);
+            //TODO add cooke
+            var left = room.InCheck;
+            var right = room.OutCheck;
+
             ViewBag.left = left.ToShortDateString();
             ViewBag.right = right.ToShortDateString();
-            return View("ListFreeRoom", _room.GetAllFreeRooms(left, right));
+            //
+            return View("ListFreeRoom", _room.GetAllFreeRooms(_mapper.Map<RoomFreeBl>(room)));
         }
         [HttpGet]
         public IActionResult RoomDetails(int id)
         {
-            return View("RoomDetails",_room.GetRomm(id));
+            return View("RoomDetails", _room.GetRomm(id));
         }
         [HttpGet]
         public IActionResult AllRoom()
