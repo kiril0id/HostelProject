@@ -28,7 +28,7 @@ namespace Hostel.BusinessLogic.Services
                        //where tab2.InCheck < left && tab2.OutCheck > right
                        select tab2.IdRoom).ToList();
 
-            return _context.Room.Where(w => !sub.Contains(w.Id) && w.Type == room.Type).ToList();
+            return _context.Room.Where(w => !sub.Contains(w.Id)).ToList();
 
 
 
