@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Hostel.Web.Models;
 using Hostel.BusinessLogic.Services;
 using Hostel.Data.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Hostel.Web.Controllers
 {
@@ -17,8 +18,7 @@ namespace Hostel.Web.Controllers
 
         private const string cookieDateLeft = "DateLeft";
         private const string cookieDateRight = "DateRight";
-        private const string cookieIdRoom = "IdRoom";
-        private const string cookieClient = "Client";
+        private const string cookieType = "Type";
 
         public HomeController(IRoom room)
         {
@@ -34,10 +34,14 @@ namespace Hostel.Web.Controllers
         [HttpPost]
         public IActionResult Index(string left, string right, string type)
         {
-            var leftDate = Convert.ToDateTime(left);
-            var rightDate = Convert.ToDateTime(right);
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now.AddMinutes(20);
+            Response.Cookies.Append(cookieDateLeft, left.ToString(), options);
+            Response.Cookies.Append(cookieDateRight, right.ToString(), options);
+            Response.Cookies.Append(cookieType, type.ToString(), options);
 
-            return RedirectToAction("DashboardRoom", "BookingRoom", new RoomFreeViewModel { InCheck = leftDate, OutCheck = rightDate, Type = type });
+            
+            return RedirectToAction("DashboardRoom", "BookingRoom");
         }
         //[HttpPost]
         //public IActionResult Index(string leftDate, string rightDate)

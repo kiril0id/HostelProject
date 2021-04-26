@@ -261,30 +261,26 @@ namespace Hostel.BusinessLogic.Services
                 _context.SaveChanges();
 
                 RoomProp roomPropCheck = _context.RoomProp.FirstOrDefault(p => p.IdRoom == room.Id);
-                RoomProp roomProp = new RoomProp
+
+                if (roomPropCheck != null)
                 {
-                    IdRoom = smalroom.Id,
-                    Shower = room.Shower,
-                    Restroom = room.Restroom,
-                    Description = room.Description,
-                    Bed = room.Bed,
-                    Wifi = room.Wifi,
-                    Tv = room.Tv,
-                    Fridge = room.Fridge,
-                };
-                if (roomPropCheck == null)
-                {
-                    _context.RoomProp.Add(roomProp);
+                    roomPropCheck.IdRoom = smalroom.Id;
+                    roomPropCheck.Shower = room.Shower;
+                    roomPropCheck.Restroom = room.Restroom;
+                    roomPropCheck.Description = room.Description;
+                    roomPropCheck.Bed = room.Bed;
+                    roomPropCheck.Wifi = room.Wifi;
+                    roomPropCheck.Tv = room.Tv;
+                    roomPropCheck.Fridge = room.Fridge;
                 }
-                else
-                {
-                    _context.RoomProp.Update(roomProp);
-                }
+                _context.RoomProp.Update(roomPropCheck);
+                  
+                
 
                 _context.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex )
             {
                 return false;
                 throw;

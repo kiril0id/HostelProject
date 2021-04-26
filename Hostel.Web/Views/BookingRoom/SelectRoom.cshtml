@@ -8,50 +8,56 @@
                 <div class="row reservation-top">
                     <div class="module __reservation">
                         <div class="module-block">
-                            <form asp-action="DashboardRoom" asp-controller="BookingRoom" method="get" class="form-planner form-horizontal">
+                            <form asp-action="DashboardRoom" asp-controller="BookingRoom"  class="form-planner form-horizontal">
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
                                         <div class="form-group">
-
-                                            <div class="form-group">
-                                                <label>Check in</label>
-                                                <input class="form-control __plannerInput" id="leftDate" type="text" placeholder="10-05-2015" value="@ViewBag.left" />
-                                            </div>
+                                            <label>Check in</label>
+                                            <input class="form-control __plannerInput" name="left" type="text" placeholder="10-05-2021" value="@ViewBag.left" />
                                         </div>
-                                        <div class="col-md-3 col-xs-12">
-                                            <div class="form-group">
-                                                <label>Check out</label>
-                                                <input class="form-control __plannerInput" id="rightDate" type="text" placeholder="17-05-2015" value="@ViewBag.right" />
-                                            </div>
-                                        </div>
-                                        @*<div class="col-md-2 col-xs-6">
-                                                                            <div class="form-group">
-                                                                                <label>Adults</label>
-                                                                                <div class="theme-select">
-                                                                                    <select class="form-control __plannerSelect">
-                                                                                        <option value="">1</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                        <a href="C:\Users\Kirill\Source\Repos\HostelProject\Hostel.Web\Views\BookingRoom\SelectRoom.cshtml">C:\Users\Kirill\Source\Repos\HostelProject\Hostel.Web\Views\BookingRoom\SelectRoom.cshtml</a>
-                                                                        </div>
-                                                                        <div class="col-md-2 col-xs-6">
-                                                                            <div class="form-group">
-                                                                                <label>Kids</label>
-                                                                                <div class="theme-select">
-                                                                                    <select class="form-control __plannerSelect">
-                                                                                        <option value="">1</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>*@
-                                        <div class="col-md-2 col-xs-12">
+                                    </div>
 
-                                            <div class="form-group">
-                                                <input type="submit" value="Отправить" class="btn btn-default wizzard-search-btn" />
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Check out</label>
+                                            <input class="form-control __plannerInput" name="right" type="text" placeholder="17-05-2021" value="@ViewBag.right" />
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-3 col-xs-6">
+                                        <div class="form-group">
+                                            <label>Room type</label>
+                                            <div class="theme-select">
+                                                <select class="form-control __plannerSelect" name="type">
+                                                    <option value="@ViewBag.type">@ViewBag.type</option>
+                                                    @foreach (var item in (List<string>)ViewBag.types)
+                                                    {
+                                                        <option value="@item">@item</option>
+                                                    }
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
+
+                                    @*
+        <div class="col-md-2 col-xs-6">
+            <div class="form-group">
+                <label>Kids</label>
+                <div class="theme-select">
+                    <select class="form-control __plannerSelect">
+                        <option value="">1</option>
+                    </select>
+                </div>
+            </div>
+        </div>*@
+                                    <div class="col-md-2 col-xs-12">
+                                        <div class="form-group ">
+                                            <input type="submit" value="Поиск" class="btn btn-default wizzard-search-btn" />
+                                        </div>
+                                    </div>
+
                                 </div>
                             </form>
 
@@ -71,7 +77,7 @@
 
                                 <li class="col-md-4 col-sm-6 col-xs-12 best-room_li">
                                     <div class="best-room_img">
-                                        <a href="#"><img src="assets/images/best-rooms/1.jpg" alt="" /></a>
+                                        <a href="#"><img src="~/images/best-rooms/1.jpg" alt="" /></a>
                                         <div class="best-room_overlay">
                                             <div class="overlay_btn"><a class="btn btn-default" href="wizzard-step2.html">Select</a></div>
                                         </div>

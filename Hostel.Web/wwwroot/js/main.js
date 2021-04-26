@@ -99,8 +99,8 @@ function viewport()
         $( "#slider-range" ).slider({
             range: true,
             min: 0,
-            max: 500,
-            values: [ 75, 300 ],
+            max: 100,
+            values: [ 20, 60 ],
             slide: function( event, ui ) {
                 $( "#amount1" ).text("$" + ui.values[ 0 ]);
                 $( "#amount2" ).text("$" + ui.values[ 1 ]);

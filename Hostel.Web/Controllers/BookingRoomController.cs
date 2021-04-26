@@ -20,8 +20,7 @@ namespace Hostel.Web.Controllers
         private readonly IMapper _mapper;
         private const string cookieDateLeft = "DateLeft";
         private const string cookieDateRight = "DateRight";
-        private const string cookieIdRoom = "IdRoom";
-        private const string cookieClient = "Client";
+        private const string cookieType = "Type";
 
         public BookingRoomController(IRoom room, IMapper mapper)
         {
@@ -44,29 +43,62 @@ namespace Hostel.Web.Controllers
         //}
 
         [HttpGet]
-        public IActionResult DashboardRoom(RoomFreeViewModel room)
+        public IActionResult DashboardRoom()
         {
             //var left= Convert.ToDateTime(leftDate); 
             //var right= Convert.ToDateTime(rightDate);
             //ViewBag.left = left.ToShortDateString();.
             //ViewBag.right = right.ToShortDateString();
             //return View("ListFreeRoom", _room.GetAllFreeRooms(left, right));
-
-            //TODO: add cooke
-            var left = room.InCheck;
-            var right = room.OutCheck;
+            DateTime left;
+            DateTime right;
+            string type;
+           
+            if (Request.Cookies.ContainsKey(cookieDateLeft))
+            {
+                 left= Convert.ToDateTime(Request.Cookies[cookieDateLeft]);
+            }
+            else
+            {
+                left = DateTime.Now;
+            }
+            if (Request.Cookies.ContainsKey(cookieDateRight))
+            {
+                right = Convert.ToDateTime(Request.Cookies[cookieDateRight]);
+            }
+            else
+            {
+                right = DateTime.Now.AddDays(1);
+            }
+            if (Request.Cookies.ContainsKey(cookieType))
+            {
+                type = Request.Cookies[cookieType];
+            }
+            else
+            {
+                type = null;
+            }
+            
 
             ViewBag.left = left.ToShortDateString();
             ViewBag.right = right.ToShortDateString();
-            //
-            return View("SelectRoom", _room.GetAllFreeRoomsWithProp(_mapper.Map<RoomFreeBl>(room)));
+            ViewBag.type = type;
+            ViewBag.types = _room.Types();
+            return View("SelectRoom", _room.GetAllFreeRoomsWithProp(_mapper.Map<RoomFreeBl>(new RoomFreeViewModel { InCheck = left, OutCheck = right, Type = type})));
         }
 
-        //[HttpPost]
-        //public IActionResult DashboardRoom()
-        //{
-        //    return View();
-        //}
+         [HttpPost]
+        public IActionResult DashboardRoom(string left, string right, string type)
+        {
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now.AddMinutes(20);
+            Response.Cookies.Append(cookieDateLeft, left.ToString(), options);
+            Response.Cookies.Append(cookieDateRight, right.ToString(), options);
+            Response.Cookies.Append(cookieType, type.ToString(), options);
+
+
+            return RedirectToAction("DashboardRoom", "BookingRoom");
+        }
 
 
 

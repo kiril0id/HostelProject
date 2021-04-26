@@ -2584,8 +2584,8 @@ section.map {
   padding: 50px 0 20px 0;
 }
 
-.reservation_last_step_container .module.__reservation input {
-  background-color: #fff !important;
+/*.reservation_last_step_container .module.__reservation input {
+  background-color: #fff !important;*/
 }
 
 .reservation_last_step_container > .container {
