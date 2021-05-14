@@ -33,8 +33,8 @@ namespace Hostel.Web
             CreateMap<ServiceViewModel, ServiceBl>();
             CreateMap<BookingViewModel, BookingBl>();
             CreateMap<BookingBl, BookingViewModel>();
-            CreateMap<RoomFreeViewModel, RoomFreeBl>();
-            CreateMap<RoomFreeBl, RoomFreeViewModel>();
+            CreateMap<SearchRoomData, RoomFreeBl>();
+            CreateMap<RoomFreeBl, SearchRoomData>();
         }
     }
 }

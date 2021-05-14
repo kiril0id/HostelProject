@@ -1,6 +1,77 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-    <a href="C:\Users\Kirill\Source\Repos\HostelProject\Hostel.Web\Views\BookingRoomUser\ConfirmBooking.cshtml">C:\Users\Kirill\Source\Repos\HostelProject\Hostel.Web\Views\BookingRoomUser\ConfirmBooking.cshtml</a>
+﻿@model  ReservationViewModel
+
+
+@*<section class="breadcrumbs" style=" background-image: url(images/breadcrumbs/reservation.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="h1">Reservation</h1>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a><i class="fa fa-angle-right"></i></li>
+                    <li class="active">Finish Reservation</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>*@
+<div class="wizzard">
+    <div class="container-fluid reservation_last_step_container">
+        <div class="container">
+            <div class="row reservation-top">
+                <div class="module __reservation">
+                    <div class="module-block">
+                        <form asp-action="DashboardRoom" asp-controller="BookingRoom" class="form-planner form-horizontal">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Заезд</label>
+                                        <input class="form-control __plannerInput" readonly="readonly" asp-for="@Model.searchRoom.InCheck" type="date"  />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Выезд</label>
+                                        <input class="form-control __plannerInput" readonly="readonly" asp-for="@Model.searchRoom.OutCheck" type="date" />
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="form-group">
+                                        <label>Тип комнаты</label>
+                                        <input class="form-control " readonly="readonly" asp-for="@Model.searchRoom.Type" type="text" />
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-xs-12">
+                                    <div class="form-group ">
+                                        <input type="submit" value="Редактировать" class="btn btn-default wizzard-search-btn" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wizzard-success">
+                    <div class="wizzard-success_t">Ваше бронирование было успешно отправлено!</div>
+                    <p> Детали вашего бронирования были отправлены на вашу электронную почту. Если у Вас возникнут вопросы, не стесняйтесь обращаться к нам. Спасибо</p>
+                        <div class="wizzard-phone"><i class="fa fa-phone"></i> Наш телефон <span>8 (021) 552 - 12 - 46</span></div>
+                        <div class="wizzard-email"><i class="fa fa-paper-plane"></i> E-mail: <span><a href="mailto:support@email.com">support@email.com</a></span></div>
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-default">На главную</a>
+</div>
+            </div>
+        </div>
+    </div>
+</div>

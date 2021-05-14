@@ -1,11 +1,11 @@
 var geocoder;
 var map;
 var marker;
-var address = "235 Bowery, New York, NY";
+var address = "г.Поставы, ул.Советская,  63";
 
 function initialize() {
   geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var latlng = new google.maps.LatLng(55.107877, 26.838328);
 
   var myOptions = {
     zoom: 15,

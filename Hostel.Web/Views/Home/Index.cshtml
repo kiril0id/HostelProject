@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@model ReservationViewModel
 <!-- parallax -->
 <section class="bg-parallax parallax-window">
     <div class="overlay"></div>
@@ -9,9 +9,9 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="parallax-text">
-                    <h2 class="parallax_t __white">New Grand Hotel 5*</h2>
-                    <h2 class="parallax_t __green">available from 10.12.2016</h2>
-                    <p>Offices parties lasting outward nothing age few resolve. Impression to discretion understood to we interested he excellence. Him remarkably use projection collecting going about eat forty world.</p>
+                    <h2 class="parallax_t __white">Поставы Hotel</h2>
+                    <h2 class="parallax_t __green">работаем с 02.06.1998</h2>
+                    <p>Удобное расположение в центре Постав, гармония стиля и комфорта, большой спектр услуг, способность принять и разместить большое количество гостей делает гостиницу «Поставы» популярным местом временного проживания как для бизнесменов, так и для туристов.</p>
                 </div>
             </div>
             <!-- planner-->
@@ -21,21 +21,23 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label>Check in</label>
-                                    <input class="form-control " name="left" type="date" />
+                                    <label>Дата заезда</label>
+                                    <input class="form-control " asp-for="searchRoom.InCheck" name="left" type="date" />
+                                    <span asp-validation-for="searchRoom.InCheck"></span>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label>Check out</label>
-                                    <input class="form-control " name="right" type="date" />
+                                    <label>Дата выезда</label>
+                                    <input class="form-control " asp-for="searchRoom.OutCheck" name="right" type="date" />
+                                    <span asp-validation-for="searchRoom.OutCheck"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label>Room type</label>
+                                    <label>Тип номера</label>
                                     <div class="theme-select">
                                         <select class="form-control __plannerSelect" name="type">
                                             @foreach (var item in (List<string>)ViewBag.TypeRoom)
@@ -83,7 +85,7 @@
                                     </div>
                                 </div>*@
                         </div>
-                        <div class="row">
+                        @*<div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label>Price rangeTODO</label>
@@ -93,13 +95,13 @@
                                                  <span id="amount2"></span>
                                         </div>
                                     </div>
-                                </div>     
-                            </div>
+                                </div>
+                            </div>*@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="planner-check-availability">
-                                        <input type="submit" class="btn btn-default" value="Check availability" />
+                                        <input type="submit" class="btn btn-default" value="Найти комнату" />
                                         @*<a href="wizzard-step1.html" class="btn btn-default">Check availability</a>*@
                                     </div>
                                 </div>
@@ -111,4 +113,39 @@
             <!-- /planner-->
         </div>
     </div>
+</section>
+
+<!-- /enjoy our services -->
+<!-- testiomonials -->
+<section class="testimonials">
+    <div class="container">
+        <div class="title-main"><h2 class="h2">Наши посетители<span class="title-secondary">Говорят о нас</span></h2></div>
+        <div class="owl-carousel">
+            <div class="item">
+                <div class="testimonials-block_i">
+                    <div class="testimonials-block_t">Хороший  <span>Сервис</span></div>
+                    <p>Оцениваю по пятибалльной, твердую 5. Молодцы сотрудники, ВСЕГДА чисто, оккуратно и уютно. Территория чистая, не стыдно за свой город. Спасибо большое за чистоту и уют.</p>
+                </div>
+                <div class="testimonials-block_user">
+                    <div class="user_img"><img src="~/images/testimonials/mike.jpg" alt="" /></div>
+                    <div class="user_n">Людмила</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testimonials-block_i">
+                    <div class="testimonials-block_t">Спасибо большое <span>Всё Круто!</span></div>
+                    <p>Гостиница хорошая, у меня был 25 номер. Одноместный, две комнаты, гостиная и спальня, совместный туалет и душ. Стоимость за одну ночь 31 рубль.В номере есть холодильник, электрочайник, зеркало настенное в прихожей. Очень все достойно!</p>
+                </div>
+                <div class="testimonials-block_user">
+                    <div class="user_img"><img src="~/images/testimonials/mila.png" alt="" /></div>
+                    <div class="user_n">Любовь</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /testiomonials -->
+<!-- map -->
+<section class="map">
+    <div id="map"></div>
 </section>

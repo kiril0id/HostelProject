@@ -29,7 +29,7 @@ namespace Hostel.Web.Controllers
         {
 
             ViewBag.TypeRoom = _room.Types();
-            return View();
+            return View(new ReservationViewModel { searchRoom  = new SearchRoomData { InCheck = DateTime.Now, OutCheck = DateTime.Now.AddDays(1)} });
         }
         [HttpPost]
         public IActionResult Index(string left, string right, string type)

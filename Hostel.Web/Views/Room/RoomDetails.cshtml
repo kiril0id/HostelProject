@@ -1,107 +1,71 @@
-﻿@model Hostel.Data.Models.Room
+﻿@model RoomViewModel
 
 <section class="room-detail">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="row reservation-top">
-                    <div class="module __reservation">
-                        <div class="module-block">
-                            <form class="form-planner form-horizontal">
-                                <div class="col-md-3 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Check in</label>
-                                        <input class="form-control __plannerInput" id="datetimepicker1" type="text" placeholder="10-05-2015" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Check out</label>
-                                        <input class="form-control __plannerInput" id="datetimepicker2" type="text" placeholder="17-05-2015" />
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-xs-6">
-                                    <div class="form-group">
-                                        <label>Adults</label>
-                                        <div class="theme-select">
-                                            <select class="form-control __plannerSelect">
-                                                <option value="">1</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-xs-6">
-                                    <div class="form-group">
-                                        <label>Kids</label>
-                                        <div class="theme-select">
-                                            <select class="form-control __plannerSelect">
-                                                <option value="">1</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-xs-12">
-                                    <div class="form-group">
-                                        <a href="wizzard-step2.html" class="btn btn-default wizzard-search-btn">Search</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 marg50"><h2 class="h2">Superior Room - Two Bed</h2></div>
+           
+            <div class="col-lg-12 marg50"><h2 class="h2">@Model.Number</h2></div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="owl-carousel owl_gallery">
-                    <div class="item"><img class="img-responsive" src="assets/images/gallery/3.jpg"></div>
-                    <div class="item"><img class="img-responsive" src="assets/images/gallery/2.jpg"></div>
-                    <div class="item"><img class="img-responsive" src="assets/images/gallery/1.jpg"></div>
-                    <div class="item"><img class="img-responsive" src="assets/images/gallery/4.jpg"></div>
-                    <div class="item"><img class="img-responsive" src="assets/images/gallery/5.jpg"></div>
-                    <div class="item"><img class="img-responsive" src="assets/images/gallery/6.jpg"></div>
-                    <div class="item"><img class="img-responsive" src="assets/images/gallery/7.jpg"></div>
-                    <div class="item"><img class="img-responsive" src="assets/images/gallery/8.jpg"></div>
+                    <div class="item"><img class="img-responsive" src="~/images/gallery/3.jpg"></div>
+                    <div class="item"><img class="img-responsive" src="~/images/gallery/2.jpg"></div>
+                    <div class="item"><img class="img-responsive" src="~/images/gallery/1.jpg"></div>
+                    <div class="item"><img class="img-responsive" src="~/images/gallery/4.jpg"></div>
+                    <div class="item"><img class="img-responsive" src="~/images/gallery/5.jpg"></div>
+                    <div class="item"><img class="img-responsive" src="~/images/gallery/6.jpg"></div>
+                    <div class="item"><img class="img-responsive" src="~/images/gallery/7.jpg"></div>
+                    <div class="item"><img class="img-responsive" src="~/images/gallery/8.jpg"></div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="room-detail_overview">
                     <table class="simple">
                         <tr>
-                            <td><strong>Price:</strong></td>
-                            <td><span>@Model.Cost</span> / a night</td>
+                            <td><strong>Cтоимость:</strong></td>
+                            <td><span>@Model.Cost</span> /  сутки</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Количество кроватей</strong></td>
+                            <td>@Model.Bed </td>
                         </tr>
                         <tr>
-                            <td><strong>Room size:</strong></td>
-                            <td>150 sqm</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Bed:</strong></td>
-                            <td>2 King Beds</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Max people:</strong></td>
+                            <td><strong>Вместимотсь</strong></td>
                             <td>@Model.Сapacity</td>
                         </tr>
                         <tr>
-                            <td><strong>Wi-Fi:</strong></td>
-                            <td>Avaible</td>
+                            <td><strong>Тип :</strong></td>
+                            <td>@Model.Type</td>
                         </tr>
                         <tr>
-                            <td><strong>Room Service:</strong></td>
-                            <td>Avaible</td>
+                            <td><strong>Душь</strong></td>
+                            <td>@(Model.Shower == true ? "+" : "-")</td>
                         </tr>
                         <tr>
-                            <td><strong>Breakfast:</strong></td>
-                            <td>Included</td>
+                            <td><strong>Туалет:</strong></td>
+                            <td>@(Model.Restroom == true ? "+" : "-")</td>
                         </tr>
                         <tr>
-                            <td><strong>Laundry:</strong></td>
-                            <td>Avaible</td>
+                            <td><strong>Wifi:</strong></td>
+                            <td>@(Model.Restroom == true ? "+" : "-")</td>
                         </tr>
                         <tr>
-                            <td><strong>Taxi to Airport:</strong></td>
-                            <td>Yes</td>
+                            <td><strong>Холодильние:</strong></td>
+                            <td>@(Model.Fridge == true ? "+" : "-")</td>
                         </tr>
+                        <tr>
+                            <td><strong>Телевизор:</strong></td>
+                            <td>@(Model.Tv == true ? "+" : "-")</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Холодильние:</strong></td>
+                            <td>@(Model.Fridge == true ? "+" : "-")</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Описание:</strong></td>
+                            <td>@Model.Description</td>
+                        </tr>
+
                     </table>
                 </div>
             </div>

@@ -223,7 +223,7 @@ namespace Hostel.Web.Controllers
             DateTime right = Convert.ToDateTime(Request.Cookies[cookieDateRight]);
             ViewBag.left = left;
             ViewBag.right = right;
-            return View("CreateHandling/SelectRoom", _room.GetAllFreeRooms(_mapper.Map<RoomFreeBl>(new RoomFreeViewModel { InCheck = left, OutCheck = right })));
+            return View("CreateHandling/SelectRoom", _room.GetAllFreeRooms(_mapper.Map<RoomFreeBl>(new SearchRoomData { InCheck = left, OutCheck = right })));
         }
         public IActionResult SelectRoomEnd(int id)
         {

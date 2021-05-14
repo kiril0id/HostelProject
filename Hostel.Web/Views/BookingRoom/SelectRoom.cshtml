@@ -1,5 +1,5 @@
 ﻿
-@model List<Hostel.BusinessLogic.Models.RoomBl>
+@model ReservationViewModel
 
 
     <div class="wizzard reservation-1">
@@ -12,15 +12,15 @@
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
                                         <div class="form-group">
-                                            <label>Check in</label>
-                                            <input class="form-control __plannerInput" name="left" type="text" placeholder="10-05-2021" value="@ViewBag.left" />
+                                            <label>Заезд</label>
+                                            <input class="form-control __plannerInput" asp-for="@Model.searchRoom.InCheck" type="date"  />
                                         </div>
                                     </div>
 
                                     <div class="col-md-3 col-xs-12">
                                         <div class="form-group">
-                                            <label>Check out</label>
-                                            <input class="form-control __plannerInput" name="right" type="text" placeholder="17-05-2021" value="@ViewBag.right" />
+                                            <label>Выезд</label>
+                                            <input class="form-control __plannerInput" asp-for="@Model.searchRoom.OutCheck" type="date"  />
                                         </div>
                                     </div>
 
@@ -28,10 +28,10 @@
 
                                     <div class="col-md-3 col-xs-6">
                                         <div class="form-group">
-                                            <label>Room type</label>
+                                            <label>Тип комнаты</label>
                                             <div class="theme-select">
                                                 <select class="form-control __plannerSelect" name="type">
-                                                    <option value="@ViewBag.type">@ViewBag.type</option>
+                                                    <option value="@Model.searchRoom.Type">@Model.searchRoom.Type</option>
                                                     @foreach (var item in (List<string>)ViewBag.types)
                                                     {
                                                         <option value="@item">@item</option>
@@ -70,16 +70,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="wizzard-list">
-                        <h3 class="h3">Available rooms on specified date</h3>
+                        <h3 class="h3">Свободные номера на указанную дату</h3>
                         <ul class="row best-room_ul">
-                            @foreach (Hostel.BusinessLogic.Models.RoomBl room in Model)
+                            @foreach (var room in Model.room)
                             {
 
                                 <li class="col-md-4 col-sm-6 col-xs-12 best-room_li">
                                     <div class="best-room_img">
                                         <a href="#"><img src="~/images/best-rooms/1.jpg" alt="" /></a>
                                         <div class="best-room_overlay">
-                                            <div class="overlay_btn"><a class="btn btn-default" href="wizzard-step2.html">Select</a></div>
+                                            <div class="overlay_btn"><a class="btn btn-default" asp-action="RoomSelect" asp-controller="BookingRoom" asp-route-id="@room.Id">Select</a></div>
                                         </div>
                                     </div>
                                     <div class="best-room-info">

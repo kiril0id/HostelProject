@@ -120,9 +120,51 @@ namespace Hostel.BusinessLogic.Services
             return allRooms.Where(w => !sub.Contains(w.Id) && w.Type == room.Type).ToList();
         }
 
-        public Room GetRomm(int id)
+        public RoomBl GetRoom(int id)
         {
-            return _context.Room.Find(id);
+            Room room = _context.Room.FirstOrDefault(p => p.Id == id);
+            RoomProp roomProp = _context.RoomProp.FirstOrDefault(p => p.IdRoom == id);
+            RoomBl roomBl;
+            if (roomProp == null)
+            {
+                roomBl = new RoomBl
+                {
+                    Id = room.Id,
+                    Number = room.Number,
+                    Cost = (int)room.Cost,
+                    Сapacity = room.Сapacity,
+                    Type = room.Type,
+
+                    Shower = false,
+                    Restroom = false,
+                    Description = "",
+                    Bed = 0,
+                    Wifi = false,
+                    Tv = false,
+                    Fridge = false,
+                };
+            }
+            else
+            {
+                roomBl = new RoomBl
+                {
+                    Id = room.Id,
+                    Number = room.Number,
+                    Cost = (int)room.Cost,
+                    Сapacity = room.Сapacity,
+                    Type = room.Type,
+
+                    Shower = roomProp.Shower == null ? false : roomProp.Shower,
+                    Restroom = roomProp.Restroom == null ? false : roomProp.Restroom,
+                    Description = roomProp.Description == null ? "" : roomProp.Description,
+                    Bed = roomProp.Bed == null ? 0 : roomProp.Bed,
+                    Wifi = roomProp.Wifi == null ? false : roomProp.Wifi,
+                    Tv = roomProp.Tv == null ? false : roomProp.Tv,
+                    Fridge = roomProp.Fridge == null ? false : roomProp.Fridge,
+                };
+            }
+
+            return roomBl;
         }
 
         public IEnumerable<string> Types()
@@ -130,5 +172,7 @@ namespace Hostel.BusinessLogic.Services
             return _context.Room.Select(x => x.Type).Distinct().ToList();
 
         }
+
+        
     }
 }

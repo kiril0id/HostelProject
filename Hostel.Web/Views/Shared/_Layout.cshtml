@@ -1,11 +1,11 @@
 ﻿@using System.Security.Claims
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Hostel.Web</title>
+    <title>@ViewData["Title"] - Поставы-Гостиница</title>
     <link rel="shortcut icon" href="~/images/favicon/favicon.png">
 
     <link rel="stylesheet" href="~/css/style.css">
@@ -18,9 +18,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-                        <div class="header-location"><i class="fa fa-home"></i> <a href="#">455 Martinson, Los Angeles</a></div>
+                        <div class="header-location"><i class="fa fa-home"></i> <a href="#">Советская 33, Поставы</a></div>
                         <div class="header-email"><i class="fa fa-envelope-o"></i> <a href="mailto:support@email.com">support@email.com</a></div>
-                        <div class="header-phone"><i class="fa fa-phone"></i> <a href="#">8 (043) 567 - 89 - 30</a></div>
+                        <div class="header-phone"><i class="fa fa-phone"></i> <a href="#">8 (021) 552 - 12 - 46</a></div>
 
 
                     </div>
@@ -33,8 +33,8 @@
                                     <ul class="dropdown-menu">
                                         @if (User.FindFirst(x => x.Type == ClaimTypes.Role).Value == "admin")
                                         {
-                                            <li><a asp-controller="Admin" asp-action="IndexAdmin">admin</a></li>
-                                            <li><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="1">something</a></li>
+                                            <li><a asp-controller="Admin" asp-action="IndexAdmin">Панель администратора</a></li>
+                                            @*<li><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="1">something</a></li>*@
                                         }
                                         else
                                         {
@@ -54,10 +54,10 @@
                             else
                             {
                                 <li>
-                                    <a asp-controller="Account" asp-action="Login">Login</a>
+                                    <a asp-controller="Account" asp-action="Login">Войти</a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Account" asp-action="Register">Register</a>
+                                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
                                 </li>
                             }
                         </ul>
@@ -82,8 +82,8 @@
                             </div>
                             <div class="collapse navbar-collapse navbar-main-collapse">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class=" active"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                                    <li>
+                                    <li class=" active"><a asp-controller="Home" asp-action="Index">Отель</a></li>
+                                    @*<li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pages <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="about-us.html">About Us</a></li>
@@ -92,23 +92,23 @@
                                             <li><a href="gallery.html">Gallery</a></li>
                                             <li><a href="404.html">404 Page Not Found</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a asp-action="DashboardRoom" asp-controller="BookingRoom">Reservation</a></li>
+                                    </li>*@
+                                    <li><a asp-action="DashboardRoom" asp-controller="BookingRoom">Бронирование</a></li>
                                     <li>
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rooms <span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Номер <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li><a asp-controller="Room" asp-action="AllRoom">All Rooms</a></li>
-                                            <li><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="1">Room Detail</a></li>
+                                            <li><a asp-controller="Room" asp-action="AllRoom">Все номера</a></li>
+                                            <li><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="1">Информация о комнате</a></li>
                                         </ul>
                                     </li>
-                                    <li>
+                                    @*<li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blog <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="blog.html">All Posts</a></li>
                                             <li><a href="blog-detail.html">Post Detail</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Purchase</a></li>
+                                    <li><a href="#">Purchase</a></li>*@
                                 </ul>
                             </div>
                         </div>
@@ -133,15 +133,15 @@
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="footer-top_logo"><a href="index.html"><img src="~/images/logo/logo.png" alt="Footer logo" /></a></div>
                         <div class="footer-top_txt">
-                            <p>Continual delighted as elsewhere am convinced unfeeling. Introduced stimulated attachment no by projection. To lady whom my mile sold four need introduced.</p>
+                            <p>Гостиница «Поставы», будучи визитной карточкой Постав, на протяжении многих лет сохраняет статус лучшей гостиницы города.</p>
                         </div>
                         <div class="footer-top_address">
-                            <div><i class="fa fa-phone"></i> Phone: <span>8 (043) 567 - 89 - 30</span></div>
+                            <div><i class="fa fa-phone"></i> Телефонг: <span>8 (021) 552 - 12 - 46</span></div>
                             <div><i class="fa fa-envelope-o"></i> E-mail: <span><a href="mailto:support@email.com">support@email.com</a></span></div>
-                            <div><i class="fa fa-home"></i> Location: <span>455 Martinson, Los Angeles</span></div>
+                            <div><i class="fa fa-home"></i> Адрес: <span>Советская 33, Поставы</span></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    @*<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="footer-top_rooms">
                             <ul>
                                 <li>
@@ -173,22 +173,22 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="col-lg-4 col-md-4 col-sm-12 marg-sm-50 col-xs-12">
                         <div class="footer-top_contact_form">
-                            <div>Contact Form</div>
+                            <div></div>
                             <form action="mail.php" method="POST" class="row form-horizontal form-wizzard">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="name" class="form-control" placeholder="Name ..." />
+                                    <input type="text" name="name" class="form-control" placeholder="Имя ..." />
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="email" name="email" class="form-control" placeholder="Email ..." />
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <textarea rows="6" name="message" class="form-control" placeholder="Message ..."></textarea>
+                                    <textarea rows="6" name="message" class="form-control" placeholder="Сообщение ..."></textarea>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
-                                    <input type="submit" value="Send message" class="btn btn-default" />
+                                    <input type="submit" value="Отпраить сообщение" class="btn btn-default" />
                                 </div>
                             </form>
                         </div>
@@ -196,7 +196,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+        @*<div class="footer-bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -213,7 +213,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </footer>
 
     <!-- /footer -->
@@ -230,6 +230,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript" src="~/js/map.js"></script>
     <script type="text/javascript" src="~/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
 
 
 </body>

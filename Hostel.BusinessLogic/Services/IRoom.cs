@@ -12,7 +12,7 @@ namespace Hostel.BusinessLogic.Services
         IEnumerable<Room> GetAllFreeRooms(DateTime left, DateTime right);
         IEnumerable<Room> GetAllRooms();
         IEnumerable<RoomBl> GetAllFreeRoomsWithProp(RoomFreeBl room);
-        Room GetRomm(int id);
+        RoomBl GetRoom(int id);
         IEnumerable<string> Types();
         IEnumerable<RoomBl> GetAllRoomsWithProp();
 

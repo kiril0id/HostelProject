@@ -22,7 +22,7 @@ namespace Hostel.Web.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult ListFreeRoom(RoomFreeViewModel room)
+        public IActionResult ListFreeRoom(SearchRoomData room)
         {
             //var left= Convert.ToDateTime(leftDate); 
             //var right= Convert.ToDateTime(rightDate);
@@ -42,12 +42,12 @@ namespace Hostel.Web.Controllers
         [HttpGet]
         public IActionResult RoomDetails(int id)
         {
-            return View("RoomDetails", _room.GetRomm(id));
+            return View("RoomDetails", _mapper.Map<RoomViewModel>(_room.GetRoom(id)));
         }
         [HttpGet]
         public IActionResult AllRoom()
         {
-            return View("AllRoom", _room.GetAllRooms());
+            return View("AllRoom", _room.GetAllRoomsWithProp());
         }
     }
 }

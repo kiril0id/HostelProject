@@ -1,38 +1,37 @@
-﻿@model List<Hostel.Data.Models.Room>
+﻿@model List<Hostel.BusinessLogic.Models.RoomBl>
 
 <section class="gallery best-room">
     <div class="container">
-        <h2 class="h2">Best Rooms For Your Comfort</h2>
-        <ul class="portfolio-sorting">
+        <h2 class="h2">Лучшие комнаты для вашего комфорта</h2>
+        @*<ul class="portfolio-sorting">
             <li><a href="#" data-group="all" class="active">All</a></li>
             <li><a href="#" data-group="double">Double</a></li>
             <li><a href="#" data-group="lux">Luxury</a></li>
             <li><a href="#" data-group="standard">Standard</a></li>
             <li><a href="#" data-group="economic">Economic</a></li>
-        </ul>
+        </ul>*@
     </div>
         <div class="container best-room-carousel">
             <div id="grid" class="row best-room_ul best-rooms-isotope-page">
-                @foreach (Room room in Model)
+                @foreach (var room in Model)
                 {
                 <div data-groups="[&quot;economic&quot;, &quot;standard&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
                     <div class="best-room_img">
-                        <a href="#"><img src="assets/images/best-rooms/1.jpg" alt="" /></a>
+                        <a href="#"><img src="~/images/best-rooms/1.jpg" alt="" /></a>
                         <div class="best-room_overlay">
                             <div class="overlay_icn"><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="@room.Id"></a></div>
                         </div>
                     </div>
                     <div class="best-room-info">
                         <div class="best-room_t"><a asp-controller="Room" asp-action="RoomDetails" asp-route-id="@room.Id">@room.Number</a></div>
-                        <div class="best-room_desc">Mr do raising article general norland my hastily. Its companions say uncommonly pianoforte favourable. Education affection consulted by mr attending he therefore.</div>
+                        <div class="best-room_desc">@room.Description</div>
                         <div class="best-room_price">
                             <span>@room.Cost</span> / night
                         </div>
                         <div class="best-room_footer">
-                            <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                            <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                            <div class="footer_el __wifi">Free WiFi</div>
-                            <div class="footer_el __area">60 sqm</div>
+                            <div class="footer_el __bed"><i class="fa fa-bed"></i> @room.Bed</div>
+                            <div class="footer_el __ppl"><i class="fa fa-user"></i> @room.Сapacity</div>
+                          
                             <div class="clearfix"></div>
                         </div>
                     </div>
